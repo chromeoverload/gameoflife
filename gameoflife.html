@@ -2,9 +2,9 @@
 <html>
 
 <head>
-  
+
   <!-- This code was written from scratch by me (unless otherwise indicated). To use any of this code, please request permission from me at chromeoverload@gmail.com. DO NOT USE ANY OF THIS CODE WITHOUT PERMISSION.-->
-  
+
     <title>Conway's Game of Life</title>
     <meta charset="utf-8" />
     <link rel="icon" type="image/jpeg" href="icon.jpg">
@@ -14,34 +14,34 @@
 	<body>
 		<div id="buttons" align="middle">
 		<button id="button" onclick="toggleRun()">Start/Stop</button>
-		<button id="button" onclick="changeSpeed(20)">&#60;</button>
-		<button id="button" onclick="changeSpeed(-20)">></button>
+		<button id="button" onclick="changeSpeed(20)">Decrease Speed</button> <!-- &#60; -->
+		<button id="button" onclick="changeSpeed(-20)">Increase Speed</button> <!-- > -->
 		<button id="button" onclick="clearGrid()">Clear Grid</button>
 		<button id="button" onclick="spawnGrid()">Randomize Grid</button>
 		<button id="button" onclick="changeSize()">Size</button>
 		</div>
-		
+
 		<h3 id="p">
-      
+
     		</h3>
   <script>
 	  var worldSize = 50;
 	  var running = false;
 	  var speed = 100;
-	  
+
 	  var gridCurrent = new Array(worldSize);
 	  var i;
 	  for (i=0; i<worldSize; i++)
 	  {
 		  gridCurrent[i]=new Array(worldSize);
 	  }
-	  
+
 	  var gridNext = new Array(worldSize);
 	  for (i=0; i<worldSize; i++)
 	  {
 		  gridNext[i]=new Array(worldSize);
 	  }
-	  
+
 	  function changeSize()
 	  {
 		  worldSize++;
@@ -50,7 +50,7 @@
 	    		{
 		  		gridNext[i]=new Array(worldSize);
 	  		}
-		  
+
 		  for(row = 0; row<worldSize-1; row++)
 		{
 			for(col = 0; col<worldSize-1; col++)
@@ -58,21 +58,21 @@
 				gridNext[row][col] = gridCurrent[row][col];
 			}
 		}
-		  
+
 		  for(col = 0; col<worldSize-1; col++)
 			{
 				gridNext[worldSize-1][col] = false;
 			}
-		  
+
 		  for(row = 0; row<worldSize-1; row++)
 			{
 				gridNext[row][worldSize-1] = false;
 			}
-		  
+
 		  gridCurrent = gridNext;
 		  printGrid();
 	  }
-	  
+
 	  function clearGrid()
 	  {
 		var row;
@@ -85,23 +85,23 @@
 			}
 		}
 	  }
-	  
+
 	  function changeSpeed(increment)
 	  {
-		speed += increment;  
+		speed += increment;
 	  }
-	  
+
 	  function step()
 	  {
 		  if(running)
 	  		{
-				runSim();  
+				runSim();
 	  		}
-		  
+
 		  printGrid();
 		  setTimeout(step,speed);
 	  }
-	  
+
 	  function toggleRun()
 	  {
 		  if(running)
@@ -113,7 +113,7 @@
 			  running = true;
 		  }
 	  }
-	  
+
 	  function spawnGrid()
 	  {
 		var row;
@@ -129,7 +129,7 @@
 		}
 		printGrid();
 	  }
-	  
+
 	  function printGrid()
 	  {
 		  var grid = "";
@@ -153,9 +153,9 @@
 		document.querySelector('#p').innerHTML = grid;
 		//setTimeout(printGrid,1000);
 	  }
-	  
-	  
-	  
+
+
+
 	  function runSim()
 	  {
 		  var rowS;
@@ -175,7 +175,7 @@
 						  //Temp Location
 						  var tempr = r;
 						  var tempc = c;
-						  
+
 						  //Warps for Row
 						  if(tempr<0)
 						  {
@@ -185,7 +185,7 @@
 						  {
 							  tempr = 0;
 						  }
-						  
+
 						  //Warps for Columns
 						  if(tempc<0)
 						  {
@@ -195,7 +195,7 @@
 						  {
 							  tempc = 0;
 						  }
-						  
+
 						  //Check Current Square
 						  if(tempr < (worldSize) && tempr >= 0 && tempc < (worldSize) && tempc >= 0)
 						  {
@@ -210,7 +210,7 @@
 				  {
 					  liveNeighbors--;
 				  }
-				  
+
 				  //Set Next Grid Values
 				  if(gridCurrent[rowS][colS])
 				  {
@@ -232,21 +232,21 @@
 		  //spawnGrid();
 		  printGrid();
 	  }
-	  
 
-	  
+
+
 	  spawnGrid();
 	  step();
 	  //gridCurrent[1][1] = true;
 	  //printGrid();
 	  //runSim();
   </script>
-	
-		
+
+
 	<style>
 		#p{text-align:center;font-family: 'Lucida Console';font-weight: bold;font-size:50%} /*font-size:10px;line-height:5px*/
 		/*#buttons{display:block; margin:auto}*/
 	</style>
   </body>
   </html>
-  
+
